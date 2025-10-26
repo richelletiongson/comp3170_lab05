@@ -5,32 +5,66 @@ import Header from './AppHeader'
 import AddBook from './AddBook'
 import Modal from './Modal'
 import { useState, useEffect } from 'react'
+import booksData from '../data/book.json'
 
 function App() {
   const [books, setBooks] = useState([]);
   const [showAddBook, setShowAddBook] = useState(false);
   const [showEditBook, setShowEditBook] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterType, setFilterType] = useState('all');
 
+  // Load books from localStorage on component mount
   useEffect(() => {
     const savedBooks = localStorage.getItem('books');
     if (savedBooks) {
       const parsedBooks = JSON.parse(savedBooks);
       setBooks(parsedBooks);
+      setFilteredBooks(parsedBooks);
     } else {
-
-      setBooks([]);
+      // Initialize with sample data if no saved books
+      const initialBooks = booksData.map(book => ({
+        ...book,
+        id: `book_${Date.now()}_${Math.random()}`,
+        author: 'Unknown Author', // Default author since sample data doesn't have it
+        publisher: 'Unknown Publisher', // Default publisher
+        selected: false
+      }));
+      setBooks(initialBooks);
+      setFilteredBooks(initialBooks);
+      localStorage.setItem('books', JSON.stringify(initialBooks));
     }
-    setIsInitialized(true);
   }, []);
 
-  
+  // Save books to localStorage whenever books state changes
   useEffect(() => {
-    if (isInitialized) {
+    if (books.length > 0) {
       localStorage.setItem('books', JSON.stringify(books));
     }
-  }, [books, isInitialized]);
+  }, [books]);
+
+  // Filter books based on search term and filter type
+  useEffect(() => {
+    let filtered = books;
+    
+    if (searchTerm.trim()) {
+      filtered = books.filter(book => {
+        if (filterType === 'author') {
+          return book.author.toLowerCase().includes(searchTerm.toLowerCase());
+        } else if (filterType === 'publisher') {
+          return book.publisher.toLowerCase().includes(searchTerm.toLowerCase());
+        } else {
+          return book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                 book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                 book.publisher.toLowerCase().includes(searchTerm.toLowerCase());
+        }
+      });
+    }
+    
+    setFilteredBooks(filtered);
+  }, [books, searchTerm, filterType]);
 
 
   const handleNewButtonClick = () => {
@@ -72,6 +106,14 @@ function App() {
 
   const handleDeleteBook = () => {
     setBooks(prev => prev.filter(book => !book.selected));
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleFilterChange = (e) => {
+    setFilterType(e.target.value);
   };
 
   return (

@@ -11,26 +11,26 @@ function App() {
   const [showAddBook, setShowAddBook] = useState(false);
   const [showEditBook, setShowEditBook] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
-  const [isInitialized, setIsInitialized] = useState(false);
 
+  // Load books from localStorage on component mount
   useEffect(() => {
     const savedBooks = localStorage.getItem('books');
     if (savedBooks) {
       const parsedBooks = JSON.parse(savedBooks);
       setBooks(parsedBooks);
     } else {
-
+      // Clear any existing localStorage and start completely empty
+      localStorage.removeItem('books');
       setBooks([]);
     }
-    setIsInitialized(true);
   }, []);
 
-  
+  // Save books to localStorage whenever books state changes
   useEffect(() => {
-    if (isInitialized) {
+    if (books.length > 0) {
       localStorage.setItem('books', JSON.stringify(books));
     }
-  }, [books, isInitialized]);
+  }, [books]);
 
 
   const handleNewButtonClick = () => {

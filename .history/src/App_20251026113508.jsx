@@ -13,19 +13,20 @@ function App() {
   const [editingBook, setEditingBook] = useState(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
+  // Load books from localStorage on component mount
   useEffect(() => {
     const savedBooks = localStorage.getItem('books');
     if (savedBooks) {
       const parsedBooks = JSON.parse(savedBooks);
       setBooks(parsedBooks);
     } else {
-
+      // Start with empty book collection - no default books
       setBooks([]);
     }
     setIsInitialized(true);
   }, []);
 
-  
+  // Save books to localStorage whenever books state changes (but not on initial load)
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem('books', JSON.stringify(books));

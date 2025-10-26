@@ -5,32 +5,40 @@ import Header from './AppHeader'
 import AddBook from './AddBook'
 import Modal from './Modal'
 import { useState, useEffect } from 'react'
+import booksData from '../data/book.json'
 
 function App() {
   const [books, setBooks] = useState([]);
   const [showAddBook, setShowAddBook] = useState(false);
   const [showEditBook, setShowEditBook] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
-  const [isInitialized, setIsInitialized] = useState(false);
 
+  // Load books from localStorage on component mount
   useEffect(() => {
     const savedBooks = localStorage.getItem('books');
     if (savedBooks) {
       const parsedBooks = JSON.parse(savedBooks);
       setBooks(parsedBooks);
     } else {
-
-      setBooks([]);
+      // Initialize with sample data if no saved books
+      const initialBooks = booksData.map(book => ({
+        ...book,
+        id: `book_${Date.now()}_${Math.random()}`,
+        author: 'Unknown Author', // Default author since sample data doesn't have it
+        publisher: 'Unknown Publisher', // Default publisher
+        selected: false
+      }));
+      setBooks(initialBooks);
+      localStorage.setItem('books', JSON.stringify(initialBooks));
     }
-    setIsInitialized(true);
   }, []);
 
-  
+  // Save books to localStorage whenever books state changes
   useEffect(() => {
-    if (isInitialized) {
+    if (books.length > 0) {
       localStorage.setItem('books', JSON.stringify(books));
     }
-  }, [books, isInitialized]);
+  }, [books]);
 
 
   const handleNewButtonClick = () => {

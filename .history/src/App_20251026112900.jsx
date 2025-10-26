@@ -5,32 +5,30 @@ import Header from './AppHeader'
 import AddBook from './AddBook'
 import Modal from './Modal'
 import { useState, useEffect } from 'react'
+import booksData from '../data/book.json'
 
 function App() {
   const [books, setBooks] = useState([]);
   const [showAddBook, setShowAddBook] = useState(false);
   const [showEditBook, setShowEditBook] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
-  const [isInitialized, setIsInitialized] = useState(false);
 
+  // Load books from localStorage on component mount
   useEffect(() => {
     const savedBooks = localStorage.getItem('books');
     if (savedBooks) {
       const parsedBooks = JSON.parse(savedBooks);
       setBooks(parsedBooks);
-    } else {
-
-      setBooks([]);
     }
-    setIsInitialized(true);
+    // Start with empty book collection - no default books
   }, []);
 
-  
+  // Save books to localStorage whenever books state changes
   useEffect(() => {
-    if (isInitialized) {
+    if (books.length > 0) {
       localStorage.setItem('books', JSON.stringify(books));
     }
-  }, [books, isInitialized]);
+  }, [books]);
 
 
   const handleNewButtonClick = () => {

@@ -230,6 +230,59 @@ body {
   padding: 1rem;
  }
 
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.navigation nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.navigation nav button {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .1em;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navigation nav button:hover {
+  background-color: #141414;
+  color: #fff;
+}
+
+.navigation > div > form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 14px;
+  width: 200px;
+}
+
+.filter-select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 14px;
+  background: white;
+}
 
 .form-container {
   padding: 0 2em;

@@ -112,50 +112,7 @@ body {
   color: darkgreen;
 }
 
-.new-button-column {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.delete {
-  display: inline-block;
-  padding: .5em 1.5em;
-  background: #b2395b;
-  color: #fff;
-  border: none;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1rem;
-  letter-spacing: .05em;
-}
-
-.edit {
-  display: inline-block;
-  padding: .5em 1.5em;
-  background: #87ceeb;
-  color: #fff;
-  border: none;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1rem;
-  letter-spacing: .05em;
-}
-
-.new {
-  border: solid 5px lightgray;
-  border-radius: 10px;
-  height:290px;
-  width:200px;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  background-color: #FFFFFF;
-  color: lightgray;
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.new:hover {
-  background-color: lightgray;
-  color: #FFFFFF;
-}
+/* Button styles moved to navigation section */
 
 .main-content {
   flex: 1;
@@ -164,11 +121,7 @@ body {
 }
 
 .content {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 20px;
-  align-items: flex-start;
+  padding: 2rem;
 }
 
 .books-container {
@@ -230,6 +183,59 @@ body {
   padding: 1rem;
  }
 
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.navigation nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.navigation nav button {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .1em;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navigation nav button:hover {
+  background-color: #141414;
+  color: #fff;
+}
+
+.navigation > div > form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 14px;
+  width: 200px;
+}
+
+.filter-select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 14px;
+  background: white;
+}
 
 .form-container {
   padding: 0 2em;

@@ -13,6 +13,7 @@ function AddBook({ onAddBook, initialData }) {
         url: ''
     });
 
+    // Initialize form with initial data if provided (for editing)
     useEffect(() => {
         if (initialData) {
             setFormData({
@@ -52,9 +53,10 @@ function AddBook({ onAddBook, initialData }) {
             url: '#'
         };
 
-
+        // Call the parent function to add the book
         onAddBook(newBook);
         
+        // Reset form
         setFormData({
             title: '',
             author: '',

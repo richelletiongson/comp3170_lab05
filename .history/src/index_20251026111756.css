@@ -230,6 +230,35 @@ body {
   padding: 1rem;
  }
 
+.navigation {
+  nav {
+        padding-top: .5em;
+
+        button {
+          text-transform: uppercase;
+          font-weight: bold;
+          letter-spacing: .1em;
+        
+          &:hover {
+            background-color: #141414;
+            color: #fff;
+          }
+        }
+  }
+
+  > div > form {
+    display: flex;
+    button {
+      background: #141414;
+      color: #fff;
+    }
+  }
+
+  > div {
+    display: flex;
+    gap: 1em;
+  }
+}
 
 .form-container {
   padding: 0 2em;

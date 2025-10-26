@@ -87,31 +87,6 @@ body {
   font-size: 14px;
 }
 
-.book-publisher {
-  padding: 2px 7px;
-  text-align: center;
-}
-
-.book-publisher p {
-  margin: 0;
-  font-size: 12px;
-  color: #666;
-}
-
-.book-price {
-  padding: 2px 7px;
-  text-align: center;
-  background-color: #f0f0f0;
-  border-top: 1px solid #ddd;
-}
-
-.book-price p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: bold;
-  color: darkgreen;
-}
-
 .new-button-column {
   display: flex;
   flex-direction: column;
@@ -230,6 +205,35 @@ body {
   padding: 1rem;
  }
 
+.navigation {
+  nav {
+        padding-top: .5em;
+
+        button {
+          text-transform: uppercase;
+          font-weight: bold;
+          letter-spacing: .1em;
+        
+          &:hover {
+            background-color: #141414;
+            color: #fff;
+          }
+        }
+  }
+
+  > div > form {
+    display: flex;
+    button {
+      background: #141414;
+      color: #fff;
+    }
+  }
+
+  > div {
+    display: flex;
+    gap: 1em;
+  }
+}
 
 .form-container {
   padding: 0 2em;
