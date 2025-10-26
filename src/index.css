@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.header {
+  background-color: bisque;
+  height: 115px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 5px solid darkblue;
+}
+
+.header-title {
+  color: darkblue;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  border: solid 1px darkblue;
+  height:290px;
+  width:200px;
+  position: relative;
+}
+
+.book.selected {
+  background-color: darkgray;
+}
+
+.book-image-container {
+  height: auto;
+  width: 100%;
+  padding-top: 2rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.book-title {
+  padding: 5px 7px;
+  text-align: center;
+}
+
+.book-title h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.book-author {
+  padding: 5px 7px;
+  text-align: center;
+}
+
+.book-author p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.new-button-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.delete {
+  display: inline-block;
+  padding: .5em 1.5em;
+  background: #b2395b;
+  color: #fff;
+  border: none;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1rem;
+  letter-spacing: .05em;
+}
+
+.edit {
+  display: inline-block;
+  padding: .5em 1.5em;
+  background: #87ceeb;
+  color: #fff;
+  border: none;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1rem;
+  letter-spacing: .05em;
+}
+
+.new {
+  border: solid 5px lightgray;
+  border-radius: 10px;
+  height:290px;
+  width:200px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background-color: #FFFFFF;
+  color: lightgray;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.new:hover {
+  background-color: lightgray;
+  color: #FFFFFF;
+}
+
+.main-content {
+  flex: 1;
+  background-color: #FFFFFF;
+  padding: 0 2rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.books-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex: 1;
+}
+
+.footer {
+  background-color: darkblue;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-text {
+  color: #FFFFFF;
+  font-size: 1rem;
+  margin: 0;
+  text-align: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  background: white;
+  border: 2px solid black;
+  min-width: 500px;
+  min-height: 500px;
+  max-height: 80vh;
+}
+
+.modal-header {
+  padding: 2rem;
+  padding-bottom: 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.modal-body {
+  padding: 1rem;
+ }
+
+.navigation {
+  nav {
+        padding-top: .5em;
+
+        button {
+          text-transform: uppercase;
+          font-weight: bold;
+          letter-spacing: .1em;
+        
+          &:hover {
+            background-color: #141414;
+            color: #fff;
+          }
+        }
+  }
+
+  > div > form {
+    display: flex;
+    button {
+      background: #141414;
+      color: #fff;
+    }
+  }
+
+  > div {
+    display: flex;
+    gap: 1em;
+  }
+}
+
+.form-container {
+  padding: 0 2em;
+
+  > form {
+    padding: 2em;
+
+    button {
+      margin-left: 10em;
+    }
+  }
+
+  .form-control {
+     display: flex;
+     align-items: center;
+    label {
+      display: inline-block;
+      width: 10em;
+    }
+    margin: 1em 0;
+  }
+} 
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="url"] {
+  height: 40px;
+  padding: 0 1em;
+  border: 1px solid black;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 18px;
+  background: #fff;
+}
+
+.btn.primary {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: darkgreen;
+  color: #fff;
+  border: none;
+  padding: 0.8em 2.5em;
+  font-size: 1rem;
+  letter-spacing: .05em;
+}
