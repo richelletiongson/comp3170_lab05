@@ -164,7 +164,7 @@ body {
 }
 
 .filter-section {
-  padding: 0.5rem;
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -179,6 +179,8 @@ body {
 .publisher-filter {
   padding: 0.5rem;
   border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 1rem;
   background: white;
   min-width: 120px;

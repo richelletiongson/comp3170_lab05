@@ -15,6 +15,7 @@ function App() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [selectedPublisher, setSelectedPublisher] = useState('All');
 
+  // Load books from localStorage on component mount
   useEffect(() => {
     const savedBooks = localStorage.getItem('books');
     if (savedBooks) {
@@ -22,21 +23,21 @@ function App() {
       setBooks(parsedBooks);
       setFilteredBooks(parsedBooks);
     } else {
-
+      // Start with empty book collection - no default books
       setBooks([]);
       setFilteredBooks([]);
     }
     setIsInitialized(true);
   }, []);
 
-  
+  // Save books to localStorage whenever books state changes (but not on initial load)
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem('books', JSON.stringify(books));
     }
   }, [books, isInitialized]);
 
-
+  // Filter books based on selected publisher
   useEffect(() => {
     if (selectedPublisher === 'All') {
       setFilteredBooks(books);

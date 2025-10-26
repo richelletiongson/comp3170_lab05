@@ -15,6 +15,7 @@ function App() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [selectedPublisher, setSelectedPublisher] = useState('All');
 
+  // Load books from localStorage on component mount
   useEffect(() => {
     const savedBooks = localStorage.getItem('books');
     if (savedBooks) {
@@ -22,21 +23,21 @@ function App() {
       setBooks(parsedBooks);
       setFilteredBooks(parsedBooks);
     } else {
-
+      // Start with empty book collection - no default books
       setBooks([]);
       setFilteredBooks([]);
     }
     setIsInitialized(true);
   }, []);
 
-  
+  // Save books to localStorage whenever books state changes (but not on initial load)
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem('books', JSON.stringify(books));
     }
   }, [books, isInitialized]);
 
-
+  // Filter books based on selected publisher
   useEffect(() => {
     if (selectedPublisher === 'All') {
       setFilteredBooks(books);
@@ -88,35 +89,10 @@ function App() {
     setBooks(prev => prev.filter(book => !book.selected));
   };
 
-  const handlePublisherFilter = (e) => {
-    setSelectedPublisher(e.target.value);
-  };
-
-  // Get unique publishers for the dropdown
-  const getUniquePublishers = () => {
-    const publishers = books.map(book => book.publisher).filter(Boolean);
-    return [...new Set(publishers)];
-  };
-
   return (
     <div className="app">    
       <Header></Header>  
       <main className="main-content">
-        <div className="filter-section">
-          <label htmlFor="publisher-filter">filter by publisher:</label>
-          <select 
-            id="publisher-filter"
-            value={selectedPublisher} 
-            onChange={handlePublisherFilter}
-            className="publisher-filter"
-          >
-            <option value="All">All</option>
-            {getUniquePublishers().map(publisher => (
-              <option key={publisher} value={publisher}>{publisher}</option>
-            ))}
-          </select>
-        </div>
-        
         <div className="content">
           <div className="new-button-column">
             <button className="new" onClick={handleNewButtonClick}>NEW</button>
@@ -125,7 +101,7 @@ function App() {
           </div>
           
           <div className="books-container">
-            {filteredBooks.map((book) => (
+            {books.map((book) => (
               <Book 
                 key={book.id}
                 id={book.id}
